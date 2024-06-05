@@ -1,0 +1,17 @@
+# #ignore all the Files suffixing .ipynb
+
+
+
+# #ignoring 
+**/.venv
+**/Landing1
+**/Clean1
+**/checkpoint
+**/stream_landing
+**/output
+**/stream_task
+**/archived
+
+
+# #ignore all the __pycache_files 
+**/__pycache__

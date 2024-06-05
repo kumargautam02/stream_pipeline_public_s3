@@ -1,0 +1,36 @@
+version: "2"
+
+services:
+  ingestion_container:
+      container_name: python_container1
+      build: 
+            context: ./ingestion_from_s3
+            dockerfile: Dockerfile
+      volumes:
+              - stream_landing:/WORKING_DIR/landing/:rw
+
+
+  ed-pyspark-jupyter:
+    image: jupyter/pyspark-notebook:spark-3.3.0
+    user: root
+    container_name: ed-pyspark-jupyter-lab
+    ports:
+      - 8888:8888
+      - 4040:4040
+    environment:
+      JUPYTER_PORT: 8888
+      SPARK_UI_PORT: 4040
+      GRANT_SUDO: yes
+    volumes:
+      - stream_landing:/data:rw
+      - ./Processing:/home/jovyan:rw
+
+      
+volumes:
+  stream_landing:
+    driver: local
+    name: stream_landings
+    driver_opts:
+      type: none
+      device: ./stream_task/landing
+      o: bind
