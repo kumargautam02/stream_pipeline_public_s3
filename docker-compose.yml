@@ -2,12 +2,21 @@ version: "2"
 
 services:
   ingestion_container:
-      container_name: python_container1
+      container_name: ingestion_public_s3_to_landing_container
       build: 
-            context: ./ingestion_from_s3
+            context: ./ingestion/s3_to_landing
             dockerfile: Dockerfile
       volumes:
               - stream_landing:/WORKING_DIR/landing/:rw
+
+  move_landing_to_raw_container:
+    container_name: move_landing_to_raw_container
+    build: 
+          context: ./ingestion/landing_to_raw
+          dockerfile: Dockerfile
+    volumes:
+            - stream_landing:/WORKING_DIR/landing/:rw
+            - stream_raw:/WORKING_DIR/raw/:rw
 
 
   ed-pyspark-jupyter:
@@ -22,15 +31,40 @@ services:
       SPARK_UI_PORT: 4040
       GRANT_SUDO: yes
     volumes:
-      - stream_landing:/data:rw
-      - ./Processing:/home/jovyan:rw
+      - stream_raw:/data/raw/:rw
+      - ./Processing:/home/jovyan/:rw
+      - stream_output:/home/jovyan/output/:rw
+      - runtime_log:/runtime_log/:rw
 
-      
+
 volumes:
   stream_landing:
     driver: local
     name: stream_landings
     driver_opts:
       type: none
-      device: ./stream_task/landing
+      device: ./data/landing
+      o: bind
+  stream_raw:
+    driver: local
+    name: stream_raw
+    driver_opts:
+      type: none
+      device: ./data/raw
+      o: bind
+
+  stream_output:
+    driver: local
+    name: stream_output
+    driver_opts:
+      type: none
+      device: ./data/output
+      o: bind
+
+  runtime_log:
+    driver: local
+    name: runtime_log
+    driver_opts:
+      type: none
+      device: ./runtime_log/
       o: bind

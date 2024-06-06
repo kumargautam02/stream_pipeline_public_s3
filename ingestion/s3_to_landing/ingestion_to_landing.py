@@ -21,9 +21,18 @@ def ingest_data_in_file_format():
         s3 = s3fs.S3FileSystem(anon =  True)
         files_path_lsit = s3.find(s3_path, maxdepth=None, withdirs=False)[1:]
 
+        file_count = 1
+
         for file in files_path_lsit:
+            
             s3.get(file, f'{currect_working_directory}/landing/')
             logger.info(f"{file.rsplit('/', 1)[1]} file loaded successfully at {currect_working_directory}")
+            file_count += 1
+            if file_count == 20:
+                file_count = 1
+                time.sleep(10)
+                
+                
             # time.sleep(15)
             # logger.info("waiting for 15 secondds")
 

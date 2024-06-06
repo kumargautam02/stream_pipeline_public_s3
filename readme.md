@@ -12,3 +12,6 @@
 <li><h2>To Install requirements.txt :- pip install -r requirements.txt </h2></li>
 <li><h2>Run main.ipynb file</h2></li>
 </ls>
+
+<h1> Project Architecture </h1>
+<img src="./images/project_architecture.drawio" alt="Architecture">
