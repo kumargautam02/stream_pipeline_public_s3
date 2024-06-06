@@ -1,22 +1,22 @@
 version: "2"
 
 services:
-  # ingestion_container:
-  #     container_name: ingestion_public_s3_to_landing_container
-  #     build: 
-  #           context: ./ingestion/s3_to_landing
-  #           dockerfile: Dockerfile
-  #     volumes:
-  #             - stream_landing:/WORKING_DIR/landing/:rw
+  ingestion_container:
+      container_name: ingestion_public_s3_to_landing_container
+      build: 
+            context: ./ingestion/s3_to_landing
+            dockerfile: Dockerfile
+      volumes:
+              - stream_landing:/WORKING_DIR/landing/:rw
 
-  # move_landing_to_raw_container:
-  #   container_name: move_landing_to_raw_container
-  #   build: 
-  #         context: ./ingestion/landing_to_raw
-  #         dockerfile: Dockerfile
-  #   volumes:
-  #           - stream_landing:/WORKING_DIR/landing/:rw
-  #           - stream_raw:/WORKING_DIR/raw/:rw
+  move_landing_to_raw_container:
+    container_name: move_landing_to_raw_container
+    build: 
+          context: ./ingestion/landing_to_raw
+          dockerfile: Dockerfile
+    volumes:
+            - stream_landing:/WORKING_DIR/landing/:rw
+            - stream_raw:/WORKING_DIR/raw/:rw
   #   depends_on:
   #     - ingestion_container
   #   entrypoint: ["sh", "-c", "while ! docker ps -a | grep 'ingestion_container.*Exited'; do sleep 1; done; echo 'ingestion_container has finished, starting move_landing_to_raw_container'; exec python landing_to_raw.py"]

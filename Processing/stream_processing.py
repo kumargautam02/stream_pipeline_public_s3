@@ -77,14 +77,6 @@ try:
         
         logger.info(f"apply_transformations function started successfully reading data from location : /data/raw/")
         destination_path = apply_transformations(spark,f"{currect_working_directory}")
-
-        # logger.info(f"apply_transformations function completed saved parquet at location: {destination_path}")
-        # df = generating_publisher_id_with_maximum_queries(spark, destination_path)
-        # logger.info("generating_publisher_id_with_maximum_queries function runned successfully")
-        # df.coalesce(1).write.mode("overwrite").csv("top_5_publishers_id_data")
-        # logger.info("top-5 publishers_id saved in csv file")
-        # generatring_line_graph_for_top_5_publishers(df, os.getcwd())
-        # logger.info(f"generatring_line_graph_for_top_5_publishers function completed saved parquet at location: {destination_path}")
             
 except Exception as e:
         logger.info(f"Error has been encountered at main {e}")
