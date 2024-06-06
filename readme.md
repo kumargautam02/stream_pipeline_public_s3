@@ -8,7 +8,8 @@
 <ls>
 <li>Download the Zip file or Clone this repository.</li>
 <li>Go to Project Directory and open a Terminal.</li>
-<li>On Terminal use command- "docker compose up".</li>
+<li>On Terminal use command- "docker compose up".<br />
+[Note: make sure you are in the same Directory as of docker-compose.yml file]</li>
 </ls>
 
 <h1> Project Architecture </h1>
