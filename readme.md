@@ -6,9 +6,9 @@
 <h1>Steps to run this script</h1>
 
 <ls>
-<li><h3>Download the Zip file or Clone this repository.</h3></li>
-<li><h3>Go to Project Directory and open a Terminal.</h3></li>
-<li><h3>On Terminal use command- "docker compose up".</h3></li>
+<li>Download the Zip file or Clone this repository.</li>
+<li>Go to Project Directory and open a Terminal.</li>
+<li>On Terminal use command- "docker compose up".</li>
 </ls>
 
 <h1> Project Architecture </h1>
