@@ -11,6 +11,7 @@
 **/output
 **/stream_task
 **/archived
+**/data
 
 
 # #ignore all the __pycache_files 
