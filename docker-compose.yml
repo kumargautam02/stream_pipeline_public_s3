@@ -57,13 +57,13 @@ volumes:
       device: ./data/raw
       o: bind
 
-  # stream_output:
-  #   driver: local
-  #   name: stream_output
-  #   driver_opts:
-  #     type: none
-  #     device: ./data/output
-  #     o: bind
+  stream_output:
+    driver: local
+    name: stream_output
+    driver_opts:
+      type: none
+      device: ./data/output
+      o: bind
 
   runtime_log:
     driver: local

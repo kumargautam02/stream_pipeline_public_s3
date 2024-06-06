@@ -70,9 +70,15 @@ try:
 
 
 
-        spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
+        # spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
+        spark = (SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3")\
+                 .config("spark.sql.legacy.timeParserPolicy","LEGACY")\
+                    .config("spark.executor.memory", "4g")\
+                        .config("spark.driver.memory", "4g")\
+                            .config("spark.cores.max", "3")\
+                             .config("spark.sql.streaming.schemaInference", True).getOrCreate())
         logger.info(f"SparkSession Created Successfully")
-        spark.conf.set("spark.sql.streaming.schemaInference", True)
+        # spark.conf.set("spark.sql.streaming.schemaInference", True)
 
         
         logger.info(f"apply_transformations function started successfully reading data from location : /data/raw/")

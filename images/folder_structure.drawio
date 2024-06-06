@@ -1,0 +1,15 @@
+<mxfile host="app.diagrams.net" modified="2024-06-06T20:20:27.904Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="bX1kUzAMhZUz8siveCG8" version="24.4.14" type="device">
+  <diagram name="Page-1" id="7FZKKIAATU6tK1U1OLDs">
+    <mxGraphModel dx="1434" dy="738" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="stream_pipeline_public_s3/&#xa;├── Processing/&#xa; |          |---graph/&#xa; |          |        |--- line_graph.py&#xa; |          |---general_functions.py&#xa; |          |---stream_processing.py    &#xa; |&#xa; |---- data/&#xa; |        |---landing/&#xa; |        |---raw/&#xa; |        |---output/&#xa; |&#xa; |-----runtime_log/&#xa; |                 |---archived/&#xa; |                 |---checkpoint/&#xa; |&#xa; |-----ingestion/&#xa; |          |---landing_to_raw/&#xa; |                       |        |---Dockerfile&#xa; |          |        |---landing_to_raw.py &#xa; |          |---s3_to_landing/&#xa; |                   |---Dockerfile&#xa; |                   |---ingestion_to_landing.py&#xa; |         &#xa; |--- docker-compose.yml&#xa; |---README.md" id="5VDQzM2Y0xb9g5ibDhiX-1">
+          <mxCell style="text;whiteSpace=wrap;" vertex="1" parent="1">
+            <mxGeometry x="150" y="130" width="630" height="470" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
