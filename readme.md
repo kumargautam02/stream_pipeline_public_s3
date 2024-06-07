@@ -21,5 +21,5 @@
 <h1> Folder Architecture </h1>
 <img src="./images/folder_structure.png" alt="Folder Architecture">
 
-<h2>[Note: Right now O/P mode is on Console, if you want to get output in files in storage. please include .option("path", "output")]
+<h2>[Note: Right now O/P mode is on Console, if you want to get output in files in storage. please include ".option("path", "/output/")" and change format --> "parquet"]
 
