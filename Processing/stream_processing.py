@@ -8,10 +8,10 @@ from pyspark.sql.functions import *
 from pyspark.sql.window import Window
 from pyspark.sql.types import *
 from general_functions import *
-import matplotlib.pyplot as plt
-import matplotlib.pyplot as pyplt
-from scipy.interpolate import make_interp_spline
-from scipy.ndimage import gaussian_filter1d
+# import matplotlib.pyplot as plt
+# import matplotlib.pyplot as pyplt
+# from scipy.interpolate import make_interp_spline
+# from scipy.ndimage import gaussian_filter1d
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger('Data_Processing')
@@ -30,7 +30,7 @@ def apply_transformations(spark,destination_path):
         logger.info('stream_processing_Script started')
         df = (spark.readStream.option("cleanSource","archive")
               .option("sourceArchiveDir", f"./runtime_log/archived/here/")
-              .option("maxFilesPerTrigger", 1).format("json").load(f"./data/raw"))
+              .option("maxFilesPerTrigger", 1).format("json").load(f"./raw/perf_click_data-2-2024-05-10-00-03-03-b36c6ecd-9f5c-45fa-87ac-634f1c6a31ea.gz"))
         
         df = df.select('*', "ip_geo.*", "query.*").drop("query", "ip_geo")
         df = df.toDF(*get_unique_column_names(df.columns))
@@ -70,13 +70,13 @@ try:
 
 
 
-        spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
-        # spark = (SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3")\
-        #          .config("spark.sql.legacy.timeParserPolicy","LEGACY")\
-        #             .config("spark.executor.memory", "4g")\
-        #                 .config("spark.driver.memory", "4g")\
-        #                     .config("spark.cores.max", "3")\
-        #                      .config("spark.sql.streaming.schemaInference", True).getOrCreate())
+        # spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
+        spark = (SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3")\
+                 .config("spark.sql.legacy.timeParserPolicy","LEGACY")\
+                    .config("spark.executor.memory", "4g")\
+                        .config("spark.driver.memory", "4g")\
+                            .config("spark.cores.max", "3")\
+                             .config("spark.sql.streaming.schemaInference", True).getOrCreate())
         logger.info(f"SparkSession Created Successfully")
         spark.conf.set("spark.sql.streaming.schemaInference", True)
 
