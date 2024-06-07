@@ -10,7 +10,10 @@
 <li>Go to Project Directory and open a Terminal.</li>
 <li>On Terminal use command- "docker compose up".<br />
 [Note: make sure you are in the same Directory as of docker-compose.yml file]</li>
+<li>Open jupyter notebook from docker at post 8888.</li>
+<li>open a Terminal and write "python stream_processing.py"</li>
 </ls>
+
 
 <h1> Project Architecture </h1>
 <img src="./images/project_architecture.png" alt="Project Architecture">
