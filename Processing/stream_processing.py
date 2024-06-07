@@ -30,7 +30,7 @@ def apply_transformations(spark,destination_path):
         logger.info('stream_processing_Script started')
         df = (spark.readStream.option("cleanSource","archive")
               .option("sourceArchiveDir", f"./runtime_log/archived/here/")
-              .option("maxFilesPerTrigger", 1).format("json").load(f"raw/"))
+              .option("maxFilesPerTrigger", 1).format("json").load(f"./data/raw"))
         
         df = df.select('*', "ip_geo.*", "query.*").drop("query", "ip_geo")
         df = df.toDF(*get_unique_column_names(df.columns))
@@ -70,15 +70,15 @@ try:
 
 
 
-        # spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
-        spark = (SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3")\
-                 .config("spark.sql.legacy.timeParserPolicy","LEGACY")\
-                    .config("spark.executor.memory", "4g")\
-                        .config("spark.driver.memory", "4g")\
-                            .config("spark.cores.max", "3")\
-                             .config("spark.sql.streaming.schemaInference", True).getOrCreate())
+        spark = SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3").config("spark.sql.legacy.timeParserPolicy","LEGACY").getOrCreate()
+        # spark = (SparkSession.builder.master("local[*]").appName("stream_procecssing_pipeline_from_s3")\
+        #          .config("spark.sql.legacy.timeParserPolicy","LEGACY")\
+        #             .config("spark.executor.memory", "4g")\
+        #                 .config("spark.driver.memory", "4g")\
+        #                     .config("spark.cores.max", "3")\
+        #                      .config("spark.sql.streaming.schemaInference", True).getOrCreate())
         logger.info(f"SparkSession Created Successfully")
-        # spark.conf.set("spark.sql.streaming.schemaInference", True)
+        spark.conf.set("spark.sql.streaming.schemaInference", True)
 
         
         logger.info(f"apply_transformations function started successfully reading data from location : /data/raw/")
