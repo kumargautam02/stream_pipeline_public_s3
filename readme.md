@@ -13,7 +13,7 @@
 </ls>
 
 <h1> Project Architecture </h1>
-<img src="./images\project_architecture.jpg" alt="Project Architecture">
+<img src="./images/project_architecture.png" alt="Project Architecture">
 
 <h1> Folder Architecture </h1>
 <img src="./images/folder_structure.png" alt="Folder Architecture">
